@@ -20,6 +20,7 @@ router.post('/', function (req, res, next) {
 
 });
 
+//Clear all tasks
 router.post('/clear', (req, res, next) => {
 	db = [];
 	res.render('index');
