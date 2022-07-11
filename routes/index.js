@@ -3,12 +3,12 @@ var router = express.Router();
 var db = require('../database/database.js');
 
 /* GET home page. */
-router.get('/', function(req, res, next) {
-  res.render('index');
+router.get('/', function (req, res, next) {
+	res.render('index');
 });
 
 //Post task
-router.post('/', function(req, res, next) {
+router.post('/', function (req, res, next) {
 
 	db.push(
 		{
@@ -16,8 +16,13 @@ router.post('/', function(req, res, next) {
 			taskDone: false
 		}
 	)
-	res.render('index', {db});
-	console.log(db);
+	res.render('index', { db });
+
 });
+
+router.post('/clear', (req, res, next) => {
+	db = [];
+	res.render('index');
+})
 
 module.exports = router;

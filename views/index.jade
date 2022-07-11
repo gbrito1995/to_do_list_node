@@ -6,9 +6,12 @@ block content
 	section
 		form(action="/" method="post")
 			input(type="text" name="task")
-			button(type="submit") add
+			button(type="submit" name="add" value="add") add
+			button(type="submit" name="clear" value="clear" formaction="/clear") clear list
 		if db
-			ul
-				each val in {db}
+			table
+				each val in {db}					
 					each obj, index in val
-						li= obj.taskTitle
+						tr
+							td #{obj.taskTitle}
+							td #{obj.taskDone}					
