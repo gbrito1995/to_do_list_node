@@ -1,0 +1,14 @@
+extends layout
+
+block content
+	section
+		p TO DO LIST
+	section
+		form(action="/" method="post")
+			input(type="text" name="task")
+			button(type="submit") add
+		if db
+			ul
+				each val in {db}
+					each obj, index in val
+						li= obj.taskTitle
