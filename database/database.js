@@ -1,3 +1,6 @@
+let i = 0;
+
 let taskObj = [];
 
-module.exports = taskObj;
+exports.taskObj = taskObj;
+exports.i = i;

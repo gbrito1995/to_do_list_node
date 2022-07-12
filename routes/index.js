@@ -1,6 +1,8 @@
 var express = require('express');
 var router = express.Router();
 var db = require('../database/database.js');
+let taskObj = db.taskObj;
+let i = db.i;
 
 /* GET home page. */
 router.get('/', function (req, res, next) {
@@ -10,20 +12,28 @@ router.get('/', function (req, res, next) {
 //Post task
 router.post('/', function (req, res, next) {
 
-	db.push(
-		{
+	taskObj.push(
+		{	id: i++,
 			taskTitle: req.body.task,
 			taskDone: false
 		}
 	)
-	res.render('index', { db });
+	console.table(taskObj);
+
+	res.render('index', { taskObj });
 
 });
 
 //Clear all tasks
 router.post('/clear', (req, res, next) => {
-	db = [];
+	taskObj = [];
+	i = 0;
 	res.render('index');
 })
+/*
+router.post('/del:id', (req, res, next) => {
+	taskObj.pop();
+})
+*/
 
 module.exports = router;

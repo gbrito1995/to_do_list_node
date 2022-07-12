@@ -8,16 +8,18 @@ block content
 			input(type="text" name="task")
 			button(type="submit" name="add" value="add") add
 			button(type="submit" name="clear" value="clear" formaction="/clear") clear list
-		if db
-			table(class="tbTasks")
-				each val in {db}					
-					each obj, index in val
-						tr
-							td
-								i(class="fa fa-close")
-							td #{obj.taskTitle}							
-							td
-								if	obj.taskDone
-									input(type="checkbox" checked)
-								else
-									input(type="checkbox")
+		if taskObj
+			form(action="/" method="post")
+				table(class="tbTasks")
+					each val in {taskObj}					
+						each obj, index in val
+							tr
+								td
+									//button(type="submit" formaction="/del#{obj.id}")
+									i(class="fa fa-close" value="#{obj.id}")
+								td #{obj.taskTitle}							
+								td
+									if	obj.taskDone
+										input(type="checkbox" checked)
+									else
+										input(type="checkbox")
