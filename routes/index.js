@@ -6,19 +6,19 @@ let i = db.i;
 
 /* GET home page. */
 router.get('/', function (req, res, next) {
-	res.render('index');
+	res.render('index', { taskObj });
 });
 
 //Post task
 router.post('/', function (req, res, next) {
 
 	taskObj.push(
-		{	id: i++,
+		{
+			id: i++,
 			taskTitle: req.body.task,
 			taskDone: false
 		}
 	)
-	console.table(taskObj);
 
 	res.render('index', { taskObj });
 
@@ -28,12 +28,22 @@ router.post('/', function (req, res, next) {
 router.post('/clear', (req, res, next) => {
 	taskObj = [];
 	i = 0;
-	res.render('index');
+	res.render('index', { taskObj });
 })
-/*
-router.post('/del:id', (req, res, next) => {
-	taskObj.pop();
+
+router.post('/del/:id', (req, res, next) => {
+
+	let el = taskObj.filter((element) => {
+
+		return element.id != Number(req.params.id);
+
+	});
+
+	taskObj = el;
+
+	res.render('index', { taskObj });
+
 })
-*/
+
 
 module.exports = router;

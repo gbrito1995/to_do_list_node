@@ -15,8 +15,8 @@ block content
 						each obj, index in val
 							tr
 								td
-									//button(type="submit" formaction="/del#{obj.id}")
-									i(class="fa fa-close" value="#{obj.id}")
+									button(type="submit" formaction="/del/#{index}")
+										i(class="fa fa-close" value="#{obj.id}")
 								td #{obj.taskTitle}							
 								td
 									if	obj.taskDone
